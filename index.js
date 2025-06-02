@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // 代理TG请求的API接口
-app.get('/tg/s/*', async (req, res) => {
+app.get('/s/*', async (req, res) => {
     try {
         // 提取TG频道路径和查询参数
         const tgPath = req.params[0]; // 获取 * 匹配的部分
@@ -133,14 +133,14 @@ app.get('/', (req, res) => {
     res.json({
         message: 'TG代理服务器运行中',
         usage: {
-            proxy: 'GET /tg/s/{channel_id}?q={search_term}',
+            proxy: 'GET /s/{channel_id}?q={search_term}',
             health: 'GET /health',
             test: 'GET /test'
         },
         examples: [
-            '/tg/s/zyfb123',
-            '/tg/s/zyfb123?q=复仇者联盟',
-            '/tg/s/zyfb123?before=123456'
+            '/s/zyfb123',
+            '/s/zyfb123?q=复仇者联盟',
+            '/s/zyfb123?before=123456'
         ],
         note: '所有请求参数将原样转发到 t.me'
     });
@@ -164,7 +164,7 @@ app.use((req, res) => {
             'GET /',
             'GET /health', 
             'GET /test',
-            'GET /tg/s/*'
+            'GET /s/*'
         ]
     });
 });

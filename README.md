@@ -67,21 +67,21 @@ docker run -p 7070:7070 --restart always songnidedubai/tg-proxy
 ### 代理Telegram频道
 
 ```
-GET http://localhost:7070/tg/s/{channel_id}
+GET http://localhost:7070/s/{channel_id}
 ```
 
 例如：
-- `http://localhost:7070/tg/s/telegram` - 访问Telegram官方频道
-- `http://localhost:7070/tg/s/durov` - 访问Pavel Durov的频道
+- `http://localhost:7070/s/telegram` - 访问Telegram官方频道
+- `http://localhost:7070/s/durov` - 访问Pavel Durov的频道
 
 ### 搜索频道内容
 
 ```
-GET http://localhost:7070/tg/s/{channel_id}?q={search_term}
+GET http://localhost:7070/s/{channel_id}?q={search_term}
 ```
 
 例如：
-- `http://localhost:7070/tg/s/telegram?q=update` - 搜索Telegram频道中包含"update"的内容
+- `http://localhost:7070/s/telegram?q=update` - 搜索Telegram频道中包含"update"的内容
 
 ### 健康检查
 
