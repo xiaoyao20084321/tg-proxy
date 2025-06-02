@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  tg-proxy:
+    image: ${DOCKER_USERNAME}/tg-proxy:latest
+    container_name: tg-proxy
+    restart: always
+    ports:
+      - "7070:7070"
+    environment:
+      - NODE_ENV=production 
