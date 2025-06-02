@@ -36,7 +36,7 @@ Telegram频道代理服务器，用于转发t.me请求，解决无法直接访�
 
 ```bash
 # 克隆仓库
-git clone https://github.com/你的用户名/tg-proxy.git
+git clone https://github.com/xiaoyao20084321/tg-proxy.git
 cd tg-proxy
 
 # 安装依赖
@@ -51,15 +51,15 @@ npm start
 ### Docker部署
 
 ```bash
-# 使用Docker Compose
+# 使用Docker Compose (推荐，支持自动重启)
 docker-compose up -d
 ```
 
 或者
 
 ```bash
-# 直接使用Docker
-docker run -p 7070:7070 你的用户名/tg-proxy
+# 直接使用Docker (需要添加--restart参数实现自动重启)
+docker run -p 7070:7070 --restart always songnidedubai/tg-proxy
 ```
 
 ## API使用说明
@@ -103,7 +103,7 @@ GET /test
 
 本项目支持部署到各种云平台：
 
-- Docker Hub: `你的用户名/tg-proxy`
+- Docker Hub: `songnidedubai/tg-proxy`
 - 支持多架构：amd64和arm64
 
 ## 配置选项
