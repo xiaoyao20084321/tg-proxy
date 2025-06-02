@@ -67,26 +67,26 @@ docker run -p 7070:7070 --restart always songnidedubai/tg-proxy
 ### 代理Telegram频道
 
 ```
-GET /tg/s/{channel_id}
+GET http://localhost:7070/tg/s/{channel_id}
 ```
 
 例如：
-- `/tg/s/telegram` - 访问Telegram官方频道
-- `/tg/s/durov` - 访问Pavel Durov的频道
+- `http://localhost:7070/tg/s/telegram` - 访问Telegram官方频道
+- `http://localhost:7070/tg/s/durov` - 访问Pavel Durov的频道
 
 ### 搜索频道内容
 
 ```
-GET /tg/s/{channel_id}?q={search_term}
+GET http://localhost:7070/tg/s/{channel_id}?q={search_term}
 ```
 
 例如：
-- `/tg/s/telegram?q=update` - 搜索Telegram频道中包含"update"的内容
+- `http://localhost:7070/tg/s/telegram?q=update` - 搜索Telegram频道中包含"update"的内容
 
 ### 健康检查
 
 ```
-GET /health
+GET http://localhost:7070/health
 ```
 
 返回服务健康状态信息
@@ -94,17 +94,58 @@ GET /health
 ### 连接测试
 
 ```
-GET /test
+GET http://localhost:7070/test
 ```
 
 测试与Telegram服务器的连接
 
 ## 部署到云服务
 
-本项目支持部署到各种云平台：
+本项目可以部署到各种云平台，以下是几种常见方式：
 
-- Docker Hub: `songnidedubai/tg-proxy`
-- 支持多架构：amd64和arm64
+### 使用Docker Hub镜像
+
+本项目已发布到Docker Hub：
+- 镜像名称: `songnidedubai/tg-proxy`
+- 支持架构: amd64和arm64
+
+### 在云服务器上部署
+
+1. 登录您的云服务器
+2. 安装Docker和Docker Compose
+3. 创建`docker-compose.yml`文件：
+```yaml
+version: '3'
+
+services:
+  tg-proxy:
+    image: songnidedubai/tg-proxy:latest
+    container_name: tg-proxy
+    restart: always
+    ports:
+      - "7070:7070"
+    environment:
+      - NODE_ENV=production
+```
+4. 运行`docker-compose up -d`启动服务
+5. 访问`http://您的服务器IP:7070`测试服务
+
+### 使用Claw.cloud平台部署
+
+1. 登录[Claw.cloud](https://run.claw.cloud/)平台
+2. 创建新应用，选择"Public"镜像
+3. 镜像名称填写：`songnidedubai/tg-proxy`
+4. 容器端口设置为：`7070`
+5. 开启公共访问
+6. 点击"Deploy Application"部署
+
+### 其他云平台
+
+本项目也适用于其他支持Docker的云平台，如AWS、Google Cloud、Azure等：
+- 使用云平台的容器服务(如AWS ECS、GCP Cloud Run)
+- 设置容器镜像为`songnidedubai/tg-proxy`
+- 配置端口映射：7070
+- 设置自动重启策略
 
 ## 配置选项
 
